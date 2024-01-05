@@ -1,9 +1,14 @@
 package main
 
-import "github.com/labstack/echo/v4"
+import (
+	"github.com/aj9mb/task-management/service"
+	"github.com/labstack/echo/v4"
+)
 
 func main() {
 	e := echo.New()
-	e.GET("/board/list/get", nil)
+	e.POST("/board", service.BoardAdd)
+	e.POST("/board/people", service.BoardUserAdd)
+	e.GET("/board/list/get", service.BoardListGet)
 	e.Logger.Fatal(e.Start(":8080"))
 }
