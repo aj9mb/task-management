@@ -1,0 +1,8 @@
+FROM mysql
+
+ARG MYSQL_ROOT=password
+ARG MYSQL_DATABASE=task_management
+ARG MYSQL_USER=user
+ARG MYSQL_PASSWORD=password
+
+EXPOSE 3306

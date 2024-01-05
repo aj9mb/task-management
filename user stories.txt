@@ -1,0 +1,31 @@
+- As a user I should be able to signup to the system
+- As a user I should be able to login to the system
+- As a user I should be able to create a new board
+- As a user I should be able to give access of board to other people
+- As a user I should be able to add new task to the board
+- As a user I should be able to assign the task to myself or some other user
+- As a user I should be able to update the status of the task
+- As a user I should be able to comment on task assigned to me
+- As a user I should be able to view all boards I have access to
+- As a user I should be able to view all tasks in a board
+
+
+//apis
+- /signup
+	POST
+- /login
+	POST
+- /board
+	POST
+- /board/people
+	POST
+- /board/list/get
+	GET
+- /task/{board_id}/list/get
+	GET
+- /task
+	POST
+- /task
+	PUT
+- /task/comment
+	POST
