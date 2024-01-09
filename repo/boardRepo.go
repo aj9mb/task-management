@@ -3,6 +3,7 @@ package repo
 import (
 	"log"
 
+	"github.com/aj9mb/task-management/constants"
 	"github.com/aj9mb/task-management/dbmg"
 	"github.com/aj9mb/task-management/model"
 	_ "github.com/go-sql-driver/mysql"
@@ -10,7 +11,7 @@ import (
 
 func BoardAdd(b *model.Board) (*model.Board, error) {
 	db := dbmg.GetDb()
-	stmt, err := db.Prepare("INSERT INTO board(name, created_by) VALUES(?, ?)")
+	stmt, err := db.Prepare(constants.BOARD_ADD)
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
@@ -30,7 +31,7 @@ func BoardAdd(b *model.Board) (*model.Board, error) {
 
 func BoardUserAdd(b *model.BoardUser) (int64, error) {
 	db := dbmg.GetDb()
-	stmt, err := db.Prepare("INSERT INTO board_user (board_id, user_id, added_by, active) VALUES(?, ?, ?, 1) ON DUPLICATE KEY UPDATE added_by = VALUES(added_by), active = VALUES(active)")
+	stmt, err := db.Prepare(constants.BOARD_USER_ADD)
 	if err != nil {
 		log.Fatal(err)
 		return -1, err
@@ -50,7 +51,7 @@ func BoardUserAdd(b *model.BoardUser) (int64, error) {
 func BoardListGet(userId int64) (*[]model.Board, error) {
 	db := dbmg.GetDb()
 	boardlist := make([]model.Board, 0)
-	stmt, err := db.Prepare("SELECT b.board_id, b.name from board b JOIN board_user bu on b.board_id = bu.board_id where bu.user_id = ?")
+	stmt, err := db.Prepare(constants.BOARD_LIST_GET)
 	if err != nil {
 		log.Fatal(err)
 		return nil, err

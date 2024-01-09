@@ -11,15 +11,15 @@
 
 
 //apis
-- /signup
+- /signup	#done
 	POST
-- /login
+- /login	#done
 	POST
-- /board
+- /board	#done
 	POST
-- /board/people
+- /board/people	#done
 	POST
-- /board/list/get
+- /board/list/get	#done
 	GET
 - /task/{board_id}/list/get
 	GET
