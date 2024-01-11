@@ -47,6 +47,9 @@ func BoardUserAdd(c echo.Context) error {
 	if boardUser.BoardId <= 0 || boardUser.UserId <= 0 {
 		return c.JSON(http.StatusBadRequest, model.ErrorResponse{Message: "bad request", Url: url, StatusCode: http.StatusBadRequest, Time: time.Now()})
 	}
+	if exist, err := repo.CheckBoardExist(boardUser.BoardId); err != nil || !exist {
+		return c.JSON(http.StatusInternalServerError, model.ErrorResponse{Message: "board does not exist", Url: url, StatusCode: http.StatusInternalServerError, Time: time.Now()})
+	}
 	boardUser.AddedBy = userId
 	id, err := repo.BoardUserAdd(boardUser)
 	if id <= 0 || err != nil {

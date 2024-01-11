@@ -3,8 +3,8 @@ package model
 import "time"
 
 type ErrorResponse struct {
-	StatusCode int    `json:"status"`
-	Message    string `json:"message"`
-	Url        string `json:"url"`
-	Time       time.Time
+	StatusCode int       `json:"status,omitempty"`
+	Message    string    `json:"message,omitempty"`
+	Url        string    `json:"url,omitempty"`
+	Time       time.Time `json:"time,omitempty"`
 }
