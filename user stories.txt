@@ -21,11 +21,13 @@
 	POST
 - /board/list/get	#done
 	GET
-- /{board_id}/task/list/get
+- /{board_id}/task/list/get #done
 	GET
 - /{board_id}/task	#done
 	POST
-- /task/{board_id}
+- /task/{task_id}	#done
 	PUT
-- /task/comment
+- /task/{task_id}/comment	#done
 	POST
+- /task/{task_id}/comment/list/get	#done
+	GET

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aj9mb/task-management/repo"
+	"github.com/google/uuid"
 )
 
 func GenerateUserName(name string) (string, error) {
@@ -48,4 +49,8 @@ func GenerateRandomString(n int) string {
 		c += string(charset[r.Intn(len(charset))])
 	}
 	return c
+}
+
+func GetUuid() string {
+	return uuid.NewString()
 }

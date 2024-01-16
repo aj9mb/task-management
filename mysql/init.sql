@@ -36,3 +36,18 @@ active tinyint(1) default 1 not null,
 create_dt datetime not null default current_timestamp,
 last_update datetime default null on update current_timestamp,
 PRIMARY KEY(task_id));
+
+create table task_comment(task_comment_id bigint AUTO_INCREMENT,
+task_id bigint NOT NULL,
+user_id bigint not null,
+comment varchar(200),
+create_dt datetime default CURRENT_TIMESTAMP not null,
+last_update datetime on update CURRENT_TIMESTAMP,
+PRIMARY KEY(task_comment_id));
+
+create table user_auth(user_auth_id bigint AUTO_INCREMENT,
+user_id bigint not null,
+basic_user_name varchar(100) not null,
+basic_auth_pwd varchar(100) not null,
+create_dt datetime not null,
+PRIMARY KEY(user_auth_id));

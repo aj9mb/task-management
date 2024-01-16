@@ -77,3 +77,33 @@ func CheckUserNameExist(usernames []string) ([]string, error) {
 	}
 	return existUserNames, err
 }
+
+func UserAuthAdd(userId int64, username, pwd string) error {
+	db := dbmg.GetDb()
+	stmt, err := db.Prepare(constants.AUTH_USER_ADD)
+	if err != nil {
+		logging.GetLogger().Print(err)
+		return err
+	}
+	res, err := stmt.Exec(userId, username, pwd)
+	if err != nil {
+		logging.GetLogger().Print(err)
+		return err
+	}
+	if id, err := res.LastInsertId(); err == nil && id > 0 {
+		return nil
+	} else {
+		return err
+	}
+}
+
+func UserAuthCheck(username, pwd string) (bool, error) {
+	db := dbmg.GetDb()
+	res := false
+	err := db.QueryRow(constants.AUTH_USER_CHECK, username, pwd).Scan(&res)
+	if err != nil {
+		logging.GetLogger().Print(err)
+		return false, nil
+	}
+	return res, err
+}
